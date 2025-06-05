@@ -5,22 +5,30 @@ const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 const User = require('../models/User.js');
 
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/auth/google/callback",
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    const email = profile.emails[0].value;
-    let user = await User.findOne({ email });
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "/api/auth/google/callback",
+},
+async (accessToken, refreshToken, profile, done) => {
+  const email = profile.emails[0].value;
+  const googleId = profile.id;
 
-    if (!user) {
-      // Save minimal user (or none), then redirect later
-      return done(null, { email, role: null, isNew: true });
-    }
+  let user = await User.findOne({ email });
 
-    return done(null, user);
+  if (!user) {
+    // No user found → Redirect to signup (role not yet assigned)
+    return done(null, { email, role: null, isNew: true });
   }
-));
+
+  // ✅ User exists but googleId is not linked yet
+  if (!user.googleId) {
+    user.googleId = googleId;
+    await user.save();
+  }
+
+  return done(null, user);
+}));
+
 
 
 passport.use(new LinkedInStrategy({
@@ -35,9 +43,10 @@ passport.use(new LinkedInStrategy({
       let user = await User.findOne({ email });
 
       if (!user) {
-        // Don't create user yet, just return minimal info
-        return done(null, { email, role: null, isNew: true });
+        user = await User.create({ email, role: null });
       }
+      return done(null, user);
+
 
       return done(null, user);
     } catch (error) {

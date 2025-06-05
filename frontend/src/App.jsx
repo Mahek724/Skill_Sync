@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Signup from './pages/auth/Signup'
 import Login from './pages/auth/Login';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import LearnerProfile from './pages/learner/Learnerprofile';
 import MentorProfile from './pages/mentor/MentorProfile';
 import ContributorProfile from './pages/contributor/ContributorProfile';
@@ -13,7 +13,6 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-      <Router>
           <Routes>
               <Route path="/reset-password/:token" element={<ResetPassword />} />
               <Route path="/signup" element={<Signup />} />
@@ -22,7 +21,6 @@ function App() {
               <Route path="/mentor_profile" element={<ProtectedRoute role="mentor"><MentorProfile /></ProtectedRoute>}/>
               <Route path="/contributor_profile" element={<ProtectedRoute role="contributor"><ContributorProfile /></ProtectedRoute>}/>
           </Routes>
-      </Router>
   )
 }
 

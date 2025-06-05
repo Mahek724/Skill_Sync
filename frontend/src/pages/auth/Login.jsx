@@ -8,8 +8,8 @@ import {
 } from "../../services/authApi";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import "../../styles/login.css";
-import logo from "../../assets/logo.png"; // left side image/logo
+import "../../assets/css/login.css";
+import logo from "../../images/logo.png";
 // import { useEffect } from "react";
 
 const Popup = ({ message, type = "success", onClose }) => (
@@ -26,7 +26,7 @@ const Login = () => {
   const initialValues = {
     email: "",
     password: "",
-    rememberMe: false,
+    remember: false,
   };
 const [forgotSuccess, setForgotSuccess] = React.useState('');
 const [forgotError, setForgotError] = React.useState('');
@@ -55,6 +55,7 @@ const [forgotError, setForgotError] = React.useState('');
         sessionStorage.setItem("user", JSON.stringify(data.user));
       }
       navigate(`/${data.user.role}_profile`);
+      console.log(data)
     } catch (errorMsg) {
   const errorText =
     errorMsg?.error || errorMsg?.message || "Login failed. Please try again.";

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/signup.css';
+import '../../assets/css/signup.css';
 import { signup } from '../../services/authApi'; // Adjust path if needed
-import logo from '../../assets/logo.png'; // Adjust path as needed
+import logo from '../../images/logo.png';
 
 const Signup = () => {
   const navigate = useNavigate();

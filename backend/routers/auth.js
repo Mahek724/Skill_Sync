@@ -12,18 +12,21 @@ router.post('/reset-password/:token', authController.resetPassword);
 
  //Google OAuth
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login', session: false }),
   (req, res) => {
     const { role, email, isNew } = req.user;
 
     if (isNew || !role) {
-      return res.redirect(`http://localhost:3000/signup?email=${email}`);
+      return res.redirect(`http://localhost:5173/signup?email=${email}`);
     }
 
-    if (role === 'mentor') return res.redirect('http://localhost:3000/mentor_profile');
-    if (role === 'learner') return res.redirect('http://localhost:3000/learner_profile');
-    if (role === 'contributor') return res.redirect('http://localhost:3000/contributor_profile');
+    if (role === 'mentor') return res.redirect('http://localhost:5173/mentor_profile');
+    if (role === 'learner') return res.redirect('http://localhost:5173/learner_profile');
+    if (role === 'contributor') return res.redirect('http://localhost:5173/contributor_profile');
+
+    return res.redirect('/login');
   }
 );
 
@@ -33,14 +36,13 @@ router.get('/google/callback',
 //LinkedIn OAuth
 router.get('/linkedin', passport.authenticate('linkedin'));
 
-// Callback
 router.get('/linkedin/callback',
   passport.authenticate('linkedin', { failureRedirect: '/login', session: false }),
   (req, res) => {
     const { email, role, isNew } = req.user;
 
     if (isNew || !role) {
-      return res.redirect(`http://localhost:3000/signup?email=${email}`);
+      return res.redirect(`http://localhost:5173/signup?email=${email}`);
     }
 
     if (role === 'mentor') return res.redirect('http://localhost:5173/mentor_profile');

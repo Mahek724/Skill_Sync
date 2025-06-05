@@ -49,7 +49,7 @@ exports.signup = async (req, res) => {
 // Login
 exports.login = async (req, res) => {
   console.log("Login body:", req.body);
-  const { email, password, rememberMe } = req.body;
+  const { email, password, remember } = req.body;
    if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
@@ -63,7 +63,7 @@ exports.login = async (req, res) => {
     return res.status(400).json({ error: "Invalid credentials" });
 
   // JWT expiry based on rememberMe flag
-  const expiry = rememberMe ? "7d" : "1d";
+  const expiry = remember ? "7d" : "1d";
   const token = jwt.sign(
     { id: user._id, role: user.role },
     process.env.JWT_SECRET,
@@ -75,12 +75,13 @@ exports.login = async (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // true in prod only
     sameSite: "strict",
-    maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000, // 7 days or 1 day
+    maxAge: remember ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000, // 7 days or 1 day
   });
 
   res.json({
     message: "Login successful",
     user: { username: user.username, role: user.role },
+    token,
   });
 };
 
