@@ -37,14 +37,16 @@ router.get('/google/callback',
 router.get('/linkedin', passport.authenticate('linkedin'));
 
 router.get('/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/login', session: false }),
+  passport.authenticate('linkedin', { failureRedirect: '/login?error=need-signup', session: false }),
   (req, res) => {
-    const { email, role, isNew } = req.user;
+    const { role } = req.user;
 
-    if (isNew || !role) {
-      return res.redirect(`http://localhost:5173/signup?email=${email}`);
+    if (!role) {
+      // User exists but hasn't selected a role, redirect to signup completion
+      return res.redirect(`http://localhost:5173/signup?email=${req.user.email}`);
     }
 
+    // Redirect to the correct profile page
     if (role === 'mentor') return res.redirect('http://localhost:5173/mentor_profile');
     if (role === 'learner') return res.redirect('http://localhost:5173/learner_profile');
     if (role === 'contributor') return res.redirect('http://localhost:5173/contributor_profile');

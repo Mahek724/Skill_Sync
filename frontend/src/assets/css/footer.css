@@ -1,0 +1,70 @@
+.skill-footer {
+  background-color: #C7DB9C;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 2px solid #e0e0e0;
+  padding: 0.8rem 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 30px;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Links - Left */
+.footer-links {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Center Text */
+.footer-center {
+  justify-content: center;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Icons - Right */
+.footer-right {
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.footer-icons a {
+  font-size: 1.3rem;
+  color: #333;
+  transition: 0.3s;
+}
+
+.footer-icons a:hover {
+  color: #E50046;
+}
+
+.footer-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.footer-link:hover {
+  color: #E50046;
+  text-decoration: underline;
+}

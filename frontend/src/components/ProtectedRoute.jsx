@@ -1,8 +1,7 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({ children, role }) => {
-  // Try to get token and user from localStorage or sessionStorage
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
   const userStr = localStorage.getItem("user") || sessionStorage.getItem("user");
 
@@ -13,17 +12,25 @@ const ProtectedRoute = ({ children, role }) => {
     console.error("Error parsing user from storage", err);
   }
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   // If not logged in
   if (!token || !user) {
     return <Navigate to="/login" />;
   }
 
-  // If role is required and doesn't match user's role
+  // If role is required but doesn't match user's role
   if (role && user.role.toLowerCase() !== role.toLowerCase()) {
-    return <Navigate to={`/${user.role.toLowerCase()}_profile`} />;
+    const userRole = user.role.toLowerCase();
+
+    // Allow access to valid profile or dashboard path
+    const validPaths = [`/${userRole}_profile`, `/${userRole}_dashboard`];
+    if (!validPaths.includes(currentPath)) {
+      return <Navigate to={`/${userRole}_profile`} />;
+    }
   }
 
-  // Access granted
   return children;
 };
 

@@ -42,11 +42,17 @@ passport.use(new LinkedInStrategy({
       const email = profile.emails[0].value;
       let user = await User.findOne({ email });
 
+      // If no user, do not create - fail authentication
       if (!user) {
-        user = await User.create({ email, role: null });
+        // null for error, false for user, { message } for Passport error message
+        return done(null, false, { message: 'User must sign up first.' });
       }
-      return done(null, user);
 
+      // Link linkedinId if not already linked
+      if (!user.linkedinId) {
+        user.linkedinId = profile.id;
+        await user.save();
+      }
 
       return done(null, user);
     } catch (error) {

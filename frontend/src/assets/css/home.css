@@ -1,0 +1,348 @@
+/* src/assets/css/HomePage.css */
+:root {
+  --green: #C7DB9C;
+  --yellow: #FFF0BD;
+  --pink: #FDAB9E;
+  --red: #E50046;
+  --text-dark: #333;
+}
+
+.home-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-dark);
+}
+
+/* Hero */
+.hero-section {
+  display: flex;
+  padding: 3rem 2rem;
+  background-color: var(--yellow);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.hero-left {
+  flex: 1;
+  min-width: 300px;
+}
+.hero-left h1 {
+  font-size: 2.5rem;
+}
+.hero-left span {
+  color: var(--red);
+}
+.hero-left p {
+  margin: 1rem 0;
+}
+.hero-right {
+  flex: 1;
+  min-width: 300px;
+  max-width: 50px; /* Prevent growing too much */
+  text-align: center;
+}
+
+.hero-animation {
+  transform: scale(2.7);  /* scale up 30% */
+  transform-origin: center;
+  margin-right: 150px !important;
+}
+
+/* Steps */
+.how-it-works {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #fff;
+}
+.steps {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.step {
+  width: 220px;
+  text-align: center;
+}
+.step-icon {
+  font-size: 2rem;
+  color: var(--red);
+}
+
+/* Vision & Mission */
+.vision-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3rem 2rem;
+  align-items: center;
+   background-color: var(--yellow);
+}
+.vision-left {
+  flex: 1;
+  text-align: center;
+}
+.vision-animation{
+  transform: scale(4);  
+  padding-left: 70px !important;
+  transform-origin: center;
+  margin-right: 500px !important;
+}
+.vision-right {
+  flex: 1;
+  padding: -2rem 2rem;
+}
+.vision-right h2{
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+
+.mission-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3rem 2rem;
+  align-items: center;
+   background-color: #fff
+}
+
+.mission-right {
+  flex: 1;
+  text-align: center;
+}
+.mission-animation{
+ transform: scale(5.0);  
+  padding-right: 70px !important;
+  transform-origin: center;
+  margin-left: 500px !important;
+}
+.mission-left {
+  flex: 1;
+  padding: -2rem 2rem;
+}
+.mission-left h2{
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Roles */
+.roles-section {
+  padding: 3rem 2rem;
+  background-color: var(--yellow);
+  text-align: center;
+}
+.role-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.role-card {
+  background-color: #fff;
+  width: 250px;
+  min-height: 420px;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.role-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+.role-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+.role-card h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.role-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.role-card button {
+  background-color: var(--red);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.role-card button:hover {
+  background-color: var(--pink);
+  color: black;
+}
+.role-card-image {
+  width: 100%;
+  background-color: var(--yellow); /* or any color you want */
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px 8px 0 0; /* optional: rounded top corners */
+}
+
+.role-card-image img {
+  width: 220px;
+  height: 120px;
+  object-fit: contain;
+  align-items: center !important;
+}
+
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #fff;
+}
+.cta-buttons button {
+  margin: 0.5rem;
+  background-color: var(--red);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cta-buttons button:hover {
+  background-color: var(--pink);
+  color: black;
+}
+
+/* Testimonials */
+.testimonials-section {
+  padding: 3rem 1rem;
+  background-color: var(--yellow);
+  text-align: center;
+}
+.testimonial {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--pink);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+.testimonials-flex-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  background-color: var(--yellow);
+  flex-wrap: wrap;
+}
+
+.testimonial-lottie {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rating-animation {
+  width: 400px;
+  height: 280px;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.testimonial-slider {
+  flex: 1;
+  padding: 2rem;
+  min-width: 300px;
+}
+
+
+.testimonial-slider h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+
+.testimonial-card {
+  background-color: var(--pink);
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 500px;
+  text-align: left;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.testimonial-card p {
+  font-size: 1.05rem;
+  font-style: italic;
+}
+.testimonial-card span {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+
+
+
+/* Metrics */
+.metrics-section {
+  background-color: #fff;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.metrics {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.metric {
+  width: 180px;
+  background: var(--yellow);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.metric h3 {
+  color: var(--red);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-section, .vision-section, .mission-section {
+    flex-direction: column;
+  }
+  .role-card {
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .testimonials-flex-section {
+    flex-direction: column;
+  }
+  .testimonial-slider h2 {
+    text-align: center;
+  }
+  .testimonial-card {
+    margin-top: 1rem;
+  }
+}
+
+
+

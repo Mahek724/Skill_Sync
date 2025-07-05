@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Learnerprofile = () => {
+const LearnerProfile = () => {
   return (
     <div>Learnerprofile</div>
   )
 }
-export default Learnerprofile;
+export default LearnerProfile;
